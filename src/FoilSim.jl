@@ -5,7 +5,8 @@ using Statistics, CSV, DataFrames, Plots # data management and calculation
 include("plot.jl")
 include("util.jl")
 
-function run_singlefoilsim(;T=Float64,mem=Array) # runs simulation for a single foil
+function run_singlefoilsim(;T=Float64,mem=Array) # runs simulation for a single foil ; you can call this function with no inputs.
+
  ########################### INPUTS###########################
     coeff = SA[.3,.2,.3]; # CST coefficients
     L = 32; # chord length
@@ -116,6 +117,8 @@ function run_singlefoilsim(;T=Float64,mem=Array) # runs simulation for a single 
 
 end
 
+
+### example usage
 
 run_singlefoilsim()
 
