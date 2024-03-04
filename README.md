@@ -6,6 +6,8 @@ you will need to download
 3. julia ext in VScode
 4. this package from github (manually download or clone whichever) put it in your user folder. the same one that has .vscode
 
+   *if the folder downloads as sFoil-main rename to just sFoil
+
 then:
 
 5. open FoilSim in vscode then shift enter first line or run the file, it should error
