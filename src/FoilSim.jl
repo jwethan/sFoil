@@ -16,16 +16,16 @@ function run_singlefoilsim(;T=Float64,mem=Array) # runs simulation for a single 
     n = 10; # number of chordwise lengths
     m = 8; # number of vertical lengths
     nNose = 4.; # x location of nose
-    cycles = 3; # number of cycles to run simulation for
-    metrics = false; # plot metrics
+    cycles = 1; # number of cycles to run simulation for
+    metrics = true; # plot metrics
 
     nose = SA[nNose*L,0.5f0m*L] # calculated nose location
     ω = T(π*St*U/L); # calculated heave frequency
-    h₀ = T(L); # heave amplitude
-    θ₀ = T(20pi/180); # pitch amplitude
 
+    h₀ = T(0); # heave amplitude
+    θ₀ = T(20pi/180); # pitch amplitude
     h(t) = h₀*sin(ω*t) # heave function 
-    θfunc(t) = θ₀*cos(ω*t) # pitch angle function
+    θ(t) = θ₀*cos(ω*t) # pitch angle function
 
  #########################################################
 
@@ -78,12 +78,12 @@ function run_singlefoilsim(;T=Float64,mem=Array) # runs simulation for a single 
         forces,moment = get_force(sim,t) # get raw forces and moment
         
         hdot = ForwardDiff.derivative(h,t*sim.L/sim.U) # heave velocity
-        θdot = ForwardDiff.derivative(θfunc,t*sim.L/sim.U) # pitch velocity
+        θdot = ForwardDiff.derivative(θ,t*sim.L/sim.U) # pitch velocity
 
         power = -1*forces[2]*hdot + moment*θdot # calculate power
 
         ypos = h(t*sim.L/sim.U)
-        theta = θfunc(t*sim.L/sim.U)*180/pi
+        theta = θ(t*sim.L/sim.U)*180/pi
 
         push!(data,[t,forces[1]/(.5*sim.U^2*sim.L),forces[2]/(.5*sim.U^2*sim.L),moment/(.5*sim.U^2*sim.L^2),power/(.5*sim.U^3*sim.L),ypos,theta])
 
