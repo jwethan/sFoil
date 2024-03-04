@@ -4,7 +4,7 @@ you will need to download
 1. VScode
 2. Julia
 3. julia ext in VScode
-4. this package from github (manually download or clone whichever) put it in your user folder. the same on that has .vscode
+4. this package from github (manually download or clone whichever) put it in your user folder. the same one that has .vscode
 
 then:
 
