@@ -1,3 +1,4 @@
+mini repo for undergrad independent study Spring 2024
 
 you will need to download
 
